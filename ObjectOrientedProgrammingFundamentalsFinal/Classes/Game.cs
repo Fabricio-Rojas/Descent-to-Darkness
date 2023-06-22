@@ -9,6 +9,8 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
     internal class Game
     {
         private Hero _hero;
+        private Monster _monster;
+        private Shop _shop;
         private int _fightCount = 0;
         private int _winCount = 0;
         private int _loseCount = 0;
@@ -58,24 +60,24 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             ConsoleKey menuKey = Console.ReadKey(intercept: true).Key;
             MenuKeyPress(menuKey);
         }
-        private void GetStatistics()
+        private void ShowStatistics()
         {
             Console.Clear();
             Console.WriteLine("Showing statistics \n");
             Console.WriteLine($"Total Encounters: {_fightCount}, Monsters Conquered: {_winCount}, Souls Lost {_loseCount}\n");
             _hero.GetStats();
-            Console.WriteLine("Press any key to go back");
+            Console.WriteLine("(Press any key to go back)");
             Console.ReadKey(intercept: true);
-        }
-        private void InventoryKeyPress(ConsoleKey key)
-        {
-
         }
         private void MenuKeyPress(ConsoleKey key)
         {
             switch (key)
             {
                 case ConsoleKey.D1:
+                    //Random rand = new Random();
+                    //_hero.AddNewWeapon(new Weapon(_hero.Level));
+                    //_hero.AddNewArmor(new Armour(_hero.Level));
+                    //_hero.AddNewConsumable(new Consumable(rand.Next(3)));
 
                     DisplayMainMenu();
                     break;
@@ -86,17 +88,12 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
                     break;
 
                 case ConsoleKey.D3:
-                    Console.Clear();
-                    Console.WriteLine("Showing inventory \n");
-                    _hero.GetInventory();
-
-                    Console.WriteLine("Press any key to go back");
-                    Console.ReadKey(intercept: true);
+                    _hero.ShowEquipment();
                     DisplayMainMenu();
                     break;
 
                 case ConsoleKey.D4:
-                    GetStatistics();
+                    ShowStatistics();
                     DisplayMainMenu();
                     break;
 

@@ -31,12 +31,12 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             "Sturdy Plate Gauntlets",
             "Reliable Chain Coif",
             "Polished Steel Breastplate",
-            "Well-crafted Leather Greaves",
+            "Leather Greaves",
             "Tempered Iron Pauldrons",
             "Balanced Hardened Helm",
             "Durable Mail Leggings",
             "Fortified Kite Shield",
-            "Engraved Silver Vambraces"
+            "Silver Vambraces"
         };
         private List<string> _strongArmourNames = new List<string>
         {
@@ -45,31 +45,34 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             "Dragonbone Chestplate",
             "Seraphic Wingspan",
             "Infernal Demonplate",
-            "Bloodforged Battle Harness",
-            "Celestial Guardian's Embrace",
+            "Bloodforged Harness",
+            "Celestial Embrace",
             "Stormguard Defender",
             "Radiant Soulmail",
             "Eternal Vanguard's Plate"
         };
         private Random random = new Random();
         public string Name;
-        public int Power;
+        public int Power, Price;
         public Armour(int level)
         {
             if (level <= 5)
             {
                 Name = _weakArmourNames[random.Next(_weakArmourNames.Count)];
                 Power = random.Next(1, 3) * level;
+                Price = random.Next(1, 10);
             }
             else if (level <= 10)
             {
                 Name = _averageArmourNames[random.Next(_averageArmourNames.Count)];
                 Power = random.Next(3, 7) * level;
+                Price = random.Next(10, 25);
             }
             else if (level > 10)
             {
                 Name = _strongArmourNames[random.Next(_strongArmourNames.Count)];
-                Power = random.Next(7, 12) * level;
+                Power = random.Next(7, 15) * level;
+                Price = random.Next(25, 75);
             }
         }
         public Armour(string name, int power)

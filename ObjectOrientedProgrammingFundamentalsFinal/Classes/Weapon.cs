@@ -40,37 +40,40 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         };
         private List<string> _strongWeaponNames = new List<string>
         {
-            "Excalibur, the Blade of Kings",
-            "Stormbreaker, the Thunderstrike",
-            "Reaper's Scythe, the Soul Harvester",
-            "Oblivion's Edge, the Voidblade",
-            "Seraph's Grace, the Angelic Saber",
-            "Bloodmoon, the Crimson Cleaver",
-            "Dragonfang, the Firebrand",
-            "Leviathan, the Ocean's Wrath",
-            "Celestial Spear, the Starforged Pike",
-            "Mjolnir, the Hammer of Legends"
+            "Excalibur, God's Blade",
+            "Stormbreaker the Blade",
+            "Reapers Harvester",
+            "Oblivion's Voidblade",
+            "Seraph's Angelic Saber",
+            "Bloodmoon, the Cleaver",
+            "Dragonfang's Firebrand",
+            "Leviathan of Neptune",
+            "Celestial Star Spear",
+            "Mjolnir, The Hammer"
         };
 
         private Random random = new Random();
         public string Name;
-        public int Power;
+        public int Power, Price;
         public Weapon(int level)
         {
             if (level <= 5)
             {
                 Name = _weakWeaponNames[random.Next(_weakWeaponNames.Count)];
                 Power = random.Next(3, 7) * level;
+                Price = random.Next(1, 20);
             }
             else if (level <= 10)
             {
                 Name = _averageWeaponNames[random.Next(_averageWeaponNames.Count)];
                 Power = random.Next(7, 15) * level;
+                Price = random.Next(20, 50);
             }
             else if (level > 10)
             {
                 Name = _strongWeaponNames[random.Next(_strongWeaponNames.Count)];
                 Power = random.Next(15, 20) * level;
+                Price = random.Next(50, 100);
             }
         }
         public Weapon(string name, int power)
