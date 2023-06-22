@@ -14,11 +14,11 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         }
         public void HeroTurn()
         {
-
+            // hero.ShowActionMenu();
         }
         public void MonsterTurn()
         {
-
+            // monster.DoMonsterAction();
         }
         public void Win()
         {

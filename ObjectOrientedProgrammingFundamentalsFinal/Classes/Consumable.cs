@@ -29,7 +29,7 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             }
             Price = random.Next(25, 100);
         }
-        public void Consume(Hero hero)
+        public void BeConsumed(Hero hero)
         {
             switch (_type)
             {
@@ -39,7 +39,8 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
                     break;
 
                 case 1:
-
+                    // next attack should deal 1.5 damage
+                    hero.IsStrengthBuffed = true;
                     break;
 
                 case 2:
@@ -49,6 +50,7 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
                 default: 
                     break;
             }
+            hero.ConsumableList.Remove(this);
         }
     }
 }

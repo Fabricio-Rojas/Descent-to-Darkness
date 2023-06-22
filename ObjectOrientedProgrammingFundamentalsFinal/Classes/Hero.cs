@@ -6,6 +6,7 @@
 
         public string Name;
         public int Level, Gold, BaseStrength, BaseDefense, OriginalHealth;
+        public bool IsStrengthBuffed = false;
         public int Exp
         {
             get { return _exp; }
@@ -115,6 +116,10 @@
                     ShowEquipment();
                     break;
             }
+        }
+        public void Consume(Consumable consumable)
+        {
+            consumable.BeConsumed(this);
         }
         public void AddNewWeapon(Weapon weapon)
         {
