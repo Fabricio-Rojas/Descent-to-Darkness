@@ -49,7 +49,7 @@
             Level = 1;
             _lvlUpThreshold = 100;
             Exp = 0;
-            Gold = 0;
+            Gold = rand.Next(11);
             BaseStrength = (int)Math.Round(20 * rand.NextDouble()) + 5;
             BaseDefense = (int)Math.Round(10 * rand.NextDouble()) + 3;
             OriginalHealth = 100;
@@ -78,10 +78,10 @@
             Console.WriteLine($"Name: {Name}\nLevel: {Level}\nGold: {Gold}\nBase Strenght: {BaseStrength}\nBase Defense: {BaseDefense}");
             Console.WriteLine($"Max Health: {OriginalHealth}hp\nCurrent Health: {CurrentHealth}hp\n");
         }
-        public void ShowEquipment()
+        public void DisplayEquipment()
         {
             Console.Clear();
-            Console.WriteLine("Showing Equipment \n");
+            Console.WriteLine("Showing Equipment\n");
             Console.WriteLine($"EQUIPPED WEAPON: {EquippedWeapon.Name}, {EquippedWeapon.Power} Power, {EquippedWeapon.Price} Gold; EQUIPPED ARMOUR: {EquippedArmour.Name}, {EquippedArmour.Power} Power, {EquippedArmour.Price} Gold\n");
             Console.WriteLine("1. Change Equipped Weapon");
             Console.WriteLine("2. Change Equipped Armour");
@@ -96,24 +96,24 @@
             {
                 case ConsoleKey.D1:
                     ShowEquipWeaponMenu();
-                    ShowEquipment();
+                    DisplayEquipment();
                     break;
 
                 case ConsoleKey.D2:
                     ShowEquipArmourMenu();
-                    ShowEquipment();
+                    DisplayEquipment();
                     break;
 
                 case ConsoleKey.D3:
                     PrintInventory();
-                    ShowEquipment();
+                    DisplayEquipment();
                     break;
 
                 case ConsoleKey.Escape:
                     break;
 
                 default:
-                    ShowEquipment();
+                    DisplayEquipment();
                     break;
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
@@ -22,15 +23,20 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         {
             Console.Write("What is your name hero?: ");
             string? playerName = Console.ReadLine();
-            while (string.IsNullOrEmpty(playerName))
+            while (string.IsNullOrEmpty(playerName) || !Regex.IsMatch(playerName, @"^[A-Za-z\s]+$"))
             {
                 Console.Clear();
                 Console.Write("Please tell me your name: ");
                 playerName = Console.ReadLine();
             }
             _hero = new Hero(playerName);
+            _shop = new Shop(_hero);
             PrintLore();
             DisplayMainMenu();
+        }
+        public void Restart()
+        {
+
         }
         private void PrintLore()
         {
@@ -60,7 +66,7 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             ConsoleKey menuKey = Console.ReadKey(intercept: true).Key;
             MenuKeyPress(menuKey);
         }
-        private void ShowStatistics()
+        private void DisplayStatistics()
         {
             Console.Clear();
             Console.WriteLine("Showing statistics \n");
@@ -78,22 +84,23 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
                     //_hero.AddNewWeapon(new Weapon(_hero.Level));
                     //_hero.AddNewArmor(new Armour(_hero.Level));
                     //_hero.AddNewConsumable(new Consumable(rand.Next(3)));
+                    //_hero.LevelUp();
 
                     DisplayMainMenu();
                     break;
 
                 case ConsoleKey.D2:
-
+                    _shop.DisplayShopMenu();
                     DisplayMainMenu();
                     break;
 
                 case ConsoleKey.D3:
-                    _hero.ShowEquipment();
+                    _hero.DisplayEquipment();
                     DisplayMainMenu();
                     break;
 
                 case ConsoleKey.D4:
-                    ShowStatistics();
+                    DisplayStatistics();
                     DisplayMainMenu();
                     break;
 

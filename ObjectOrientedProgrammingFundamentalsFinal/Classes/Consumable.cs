@@ -50,7 +50,10 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
                 default: 
                     break;
             }
-            hero.ConsumableList.Remove(this);
+            if (hero.ConsumableList.Contains(this))
+            {
+                hero.ConsumableList.Remove(this);
+            }
         }
     }
 }
