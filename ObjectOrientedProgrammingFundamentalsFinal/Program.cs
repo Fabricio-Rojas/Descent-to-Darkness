@@ -2,11 +2,11 @@
 
 // a level up system that boosts stats when leveling up [done]
 // also add consumables (healing potion, potion of strength, acid flask) [done]
-// when restarting the game, create a new Hero and ask for a new Name
-// each shop has randomly generated items, with random names
-// add gold granted by killing monsters, add options to buy weapons and armour in between fights
+// each shop has randomly generated items, with random names [done]
+// create .txt files with ASCII art of the monsters [done]
 // monsters also scale with levels and have random stats and names that scale with level
-// create .txt files with ASCII art of the monsters
+// when restarting the game, create a new Hero and ask for a new Name
+// add gold granted by killing monsters, add options to buy weapons and armour in between fights
 
 Game game = new Game();
 game.Start();

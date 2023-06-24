@@ -54,8 +54,10 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         private Random random = new Random();
         public string Name;
         public int Power, Price;
+        public bool IsBought;
         public Armour(int level)
         {
+            IsBought = false;
             if (level <= 5)
             {
                 Name = _weakArmourNames[random.Next(_weakArmourNames.Count)];
@@ -79,6 +81,7 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         {
             Name = name;
             Power = power;
+            IsBought = true;
         }
     }
 }

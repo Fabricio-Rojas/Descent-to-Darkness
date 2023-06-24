@@ -53,7 +53,7 @@
             BaseStrength = (int)Math.Round(20 * rand.NextDouble()) + 5;
             BaseDefense = (int)Math.Round(10 * rand.NextDouble()) + 3;
             OriginalHealth = 100;
-            CurrentHealth = 100;
+            CurrentHealth = OriginalHealth;
             WeaponList = new List<Weapon>();
             ArmourList = new List<Armour>();
             ConsumableList = new List<Consumable>();
@@ -61,7 +61,7 @@
             EquippedArmour = new Armour("Tattered Rags", 0);
             AddNewWeapon(EquippedWeapon);
             AddNewArmor(EquippedArmour);
-            AddNewConsumable(new Consumable(1));
+            AddNewConsumable(new Consumable(0));
         }
         public void LevelUp()
         {
@@ -169,7 +169,7 @@
             Console.WriteLine("Choose Weapon to equip\n");
             for (int i = 0; i < WeaponList.Count; i++)
             {
-                Console.Write($"{i + 1}. {WeaponList[i].Name}, {WeaponList[i].Power} power, {WeaponList[i].Price} Gold\n");
+                Console.WriteLine($"{i + 1}. {WeaponList[i].Name}, {WeaponList[i].Power} power, {WeaponList[i].Price} Gold");
             }
             Console.WriteLine("\n(Press esc to return)");
             ConsoleKeyInfo key = Console.ReadKey(intercept: true);
@@ -192,7 +192,7 @@
             Console.WriteLine("Choose Armour to equip\n");
             for (int i = 0; i < ArmourList.Count; i++)
             {
-                Console.Write($"{i + 1}. {ArmourList[i].Name}, {ArmourList[i].Power} power, {ArmourList[i].Price} Gold\n");
+                Console.WriteLine($"{i + 1}. {ArmourList[i].Name}, {ArmourList[i].Power} power, {ArmourList[i].Price} Gold");
             }
             Console.WriteLine("\n(Press esc to return)");
             ConsoleKeyInfo key = Console.ReadKey(intercept: true);

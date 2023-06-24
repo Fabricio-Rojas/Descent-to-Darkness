@@ -10,8 +10,8 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
     internal class Game
     {
         private Hero _hero;
-        private Monster _monster;
         private Shop _shop;
+        private Fight _fight;
         private int _fightCount = 0;
         private int _winCount = 0;
         private int _loseCount = 0;
@@ -66,26 +66,12 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             ConsoleKey menuKey = Console.ReadKey(intercept: true).Key;
             MenuKeyPress(menuKey);
         }
-        private void DisplayStatistics()
-        {
-            Console.Clear();
-            Console.WriteLine("Showing statistics \n");
-            Console.WriteLine($"Total Encounters: {_fightCount}, Monsters Conquered: {_winCount}, Souls Lost {_loseCount}\n");
-            _hero.GetStats();
-            Console.WriteLine("(Press any key to go back)");
-            Console.ReadKey(intercept: true);
-        }
         private void MenuKeyPress(ConsoleKey key)
         {
             switch (key)
             {
                 case ConsoleKey.D1:
-                    //Random rand = new Random();
-                    //_hero.AddNewWeapon(new Weapon(_hero.Level));
-                    //_hero.AddNewArmor(new Armour(_hero.Level));
-                    //_hero.AddNewConsumable(new Consumable(rand.Next(3)));
-                    //_hero.LevelUp();
-
+                    StartNewFight();
                     DisplayMainMenu();
                     break;
 
@@ -104,14 +90,28 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
                     DisplayMainMenu();
                     break;
 
-                case ConsoleKey.Escape:
-                    Environment.Exit(0);
-                    break;
+                //case ConsoleKey.Escape:
+                //    Environment.Exit(0);
+                //    break;
 
                 default:
                     DisplayMainMenu();
                     break;
             }
+        }
+        private void StartNewFight()
+        {
+            _fight = new Fight(_hero);
+            _fight.ShowFightMenu();
+        }
+        private void DisplayStatistics()
+        {
+            Console.Clear();
+            Console.WriteLine("Showing statistics \n");
+            Console.WriteLine($"Total Encounters: {_fightCount}, Monsters Conquered: {_winCount}, Souls Lost {_loseCount}\n");
+            _hero.GetStats();
+            Console.WriteLine("(Press any key to go back)");
+            Console.ReadKey(intercept: true);
         }
     }
 }

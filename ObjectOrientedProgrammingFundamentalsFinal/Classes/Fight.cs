@@ -8,9 +8,19 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
 {
     internal class Fight
     {
-        public Fight()
+        private Hero _hero;
+        private Monster _monster;
+        public Fight(Hero hero)
         {
-
+            _hero = hero;
+            _monster = new Monster(_hero);
+        }
+        public void ShowFightMenu()
+        {
+            Console.Clear();
+            Console.WriteLine($"You encounter {_monster.Name}\n");
+            Console.WriteLine($"{_monster.Face}"); // doesnt work, find fix
+            ConsoleKeyInfo key = Console.ReadKey(intercept: true);
         }
         public void HeroTurn()
         {

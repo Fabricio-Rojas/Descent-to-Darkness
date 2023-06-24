@@ -12,8 +12,10 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         private int _type;
         public string Name;
         public int Price;
+        public bool IsBought;
         public Consumable(int type)
         {
+            IsBought = false;
             _type = type;
             if (type < 1)
             {
