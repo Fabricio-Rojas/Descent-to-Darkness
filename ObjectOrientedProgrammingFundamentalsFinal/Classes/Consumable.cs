@@ -31,26 +31,27 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             }
             Price = random.Next(25, 100);
         }
-        public void BeConsumed(Hero hero)
+        public string? BeConsumed(Hero hero)
         {
             switch (_type)
             {
                 case 0:
                     // message: healed hero for 20% of total health
-                    hero.CurrentHealth += (int)(hero.OriginalHealth * 0.2);
-                    break;
+                    int healthHealed = (int)(hero.OriginalHealth * 0.2);
+                    hero.CurrentHealth += healthHealed;
+                    return $"Healed {hero.Name} for 20% of total health ({healthHealed})";
 
                 case 1:
                     // next attack should deal 1.5 damage
                     hero.IsStrengthBuffed = true;
-                    break;
+                    return $"{hero.Name} has been strengthned, dealing 50% more damage on next attack";
 
                 case 2:
                     // reduced monsters defense by 20% percent
-                    break;
+                    return $"The ";
 
                 default: 
-                    break;
+                    return default;
             }
             if (hero.ConsumableList.Contains(this))
             {

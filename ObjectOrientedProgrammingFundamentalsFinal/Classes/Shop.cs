@@ -37,7 +37,7 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             switch (key.Key)
             {
                 case ConsoleKey.D1:
-                    BuyItems();
+                    BuyItems(); 
                     DisplayShopMenu();
                     break;
 

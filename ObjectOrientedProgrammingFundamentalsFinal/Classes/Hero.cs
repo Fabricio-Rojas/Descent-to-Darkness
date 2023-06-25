@@ -73,6 +73,22 @@
             CurrentHealth += OriginalHealth - OldHealth;
             _lvlUpThreshold = (int)((1 - (1 / ((0.112 * Level) + 1))) * 1000);
         }
+        public void Strike()
+        {
+
+        }
+        public void Block()
+        {
+
+        }
+        public void Focus()
+        {
+
+        }
+        public string? Consume(Consumable consumable)
+        {
+            return consumable.BeConsumed(this);
+        }
         public void GetStats()
         {
             Console.WriteLine($"Name: {Name}\nLevel: {Level}\nGold: {Gold}\nBase Strenght: {BaseStrength}\nBase Defense: {BaseDefense}");
@@ -116,10 +132,6 @@
                     DisplayEquipment();
                     break;
             }
-        }
-        public void Consume(Consumable consumable)
-        {
-            consumable.BeConsumed(this);
         }
         public void AddNewWeapon(Weapon weapon)
         {
