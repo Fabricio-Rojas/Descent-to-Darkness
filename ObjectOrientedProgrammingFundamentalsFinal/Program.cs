@@ -11,6 +11,7 @@ Console.OutputEncoding = Encoding.UTF8;
 // add gold granted by killing monsters, add options to buy weapons and armour in between fights [done]
 // when restarting the game, create a new Hero and ask for a new Name [done]
 // (optional after main game has finished) add monster AI and different actions [done]
+// refactor switch cases into while loops (check for input)
 // (optional after main game has finished) add skills, abilities and magic to the game
 
 Game game = new Game();

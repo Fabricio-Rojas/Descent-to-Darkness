@@ -104,7 +104,7 @@
         }
         public void GetStats()
         {
-            Console.WriteLine($"Name: {Name}\nLevel: {Level}\nExp: {Exp}/{_lvlUpThreshold}\nGold: {Gold}\nBase Strenght: {BaseStrength}\nBase Defense: {BaseDefense}");
+            Console.WriteLine($"Name: {Name}\nLevel: {Level}\nExp: {Exp}/{_lvlUpThreshold}\nGold: {Gold}\nBase Strength: {BaseStrength}\nBase Defense: {BaseDefense}");
             Console.WriteLine($"Max Health: {OriginalHealth}hp\nCurrent Health: {CurrentHealth}hp\n");
         }
         public void DisplayEquipment()
