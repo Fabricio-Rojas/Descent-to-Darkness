@@ -31,8 +31,12 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             }
             Price = random.Next(25, 100);
         }
-        public string? BeConsumed(Hero hero)
+        public string? BeConsumed(Hero hero, Monster monster)
         {
+            if (hero.ConsumableList.Contains(this))
+            {
+                hero.ConsumableList.Remove(this);
+            }
             switch (_type)
             {
                 case 0:
@@ -44,18 +48,16 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
                 case 1:
                     // next attack should deal 1.5 damage
                     hero.IsStrengthBuffed = true;
-                    return $"{hero.Name} has been strengthned, dealing 50% more damage on next attack";
+                    return $"{hero.Name} has been strengthened, dealing 50% more damage on next attack";
 
                 case 2:
                     // reduced monsters defense by 20% percent
-                    return $"The ";
+                    int reducedDefense = monster.Defence / 5;
+                    monster.Defence -= reducedDefense;
+                    return $"{monster.Name}'s defense was reduced by 20% ({reducedDefense})";
 
                 default: 
                     return default;
-            }
-            if (hero.ConsumableList.Contains(this))
-            {
-                hero.ConsumableList.Remove(this);
             }
         }
     }

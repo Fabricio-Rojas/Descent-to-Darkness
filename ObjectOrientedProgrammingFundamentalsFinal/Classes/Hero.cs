@@ -6,7 +6,7 @@
 
         public string Name;
         public int Level, Gold, BaseStrength, BaseDefense, OriginalHealth;
-        public bool IsStrengthBuffed = false;
+        public bool IsBlocking, IsFocused, IsStrengthBuffed;
         public int Exp
         {
             get { return _exp; }
@@ -49,7 +49,7 @@
             Level = 1;
             _lvlUpThreshold = 100;
             Exp = 0;
-            Gold = rand.Next(11);
+            Gold = rand.Next(10 + 1);
             BaseStrength = (int)Math.Round(20 * rand.NextDouble()) + 5;
             BaseDefense = (int)Math.Round(10 * rand.NextDouble()) + 3;
             OriginalHealth = 100;
@@ -73,25 +73,38 @@
             CurrentHealth += OriginalHealth - OldHealth;
             _lvlUpThreshold = (int)((1 - (1 / ((0.112 * Level) + 1))) * 1000);
         }
-        public void Strike()
+        public string Strike(Monster monster, out int heroDamage)
         {
+            int damage = BaseStrength + EquippedWeapon.Power;
+            int strengthenedDamage = 0;
 
-        }
-        public void Block()
-        {
+            if (IsStrengthBuffed)
+            {
+                strengthenedDamage = damage / 2;
+                IsStrengthBuffed = false;
+            }
 
+            int totalDamage = (damage + strengthenedDamage ) - monster.Defence;
+            heroDamage = totalDamage;
+            return $"{Name} moves to strike the monster for {totalDamage} total damage";
         }
-        public void Focus()
+        public string Block()
         {
-
+            IsBlocking = true;
+            return $"{Name} tenses up their body for the incoming strike";
         }
-        public string? Consume(Consumable consumable)
+        public string Focus()
         {
-            return consumable.BeConsumed(this);
+            IsFocused = true;
+            return $"{Name} readies a bone-breaking blow to enemy defenses";
+        }
+        public string? Consume(Consumable consumable, Monster monster)
+        {
+            return consumable.BeConsumed(this, monster);
         }
         public void GetStats()
         {
-            Console.WriteLine($"Name: {Name}\nLevel: {Level}\nGold: {Gold}\nBase Strenght: {BaseStrength}\nBase Defense: {BaseDefense}");
+            Console.WriteLine($"Name: {Name}\nLevel: {Level}\nExp: {Exp}/{_lvlUpThreshold}\nGold: {Gold}\nBase Strenght: {BaseStrength}\nBase Defense: {BaseDefense}");
             Console.WriteLine($"Max Health: {OriginalHealth}hp\nCurrent Health: {CurrentHealth}hp\n");
         }
         public void DisplayEquipment()

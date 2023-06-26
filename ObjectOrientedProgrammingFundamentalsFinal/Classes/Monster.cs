@@ -52,6 +52,7 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             File.ReadAllText(@"D:\Visual Studio Projects\ObjectOrientedProgrammingFundamentalsFinal\ObjectOrientedProgrammingFundamentalsFinal\Graphics\MonsterFace4.txt"),
             File.ReadAllText(@"D:\Visual Studio Projects\ObjectOrientedProgrammingFundamentalsFinal\ObjectOrientedProgrammingFundamentalsFinal\Graphics\MonsterFace5.txt"),
         };
+        private int _currentHealth;
         public string Name;
         public string Face;
         public int Level;
@@ -60,19 +61,83 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         public int Strength;
         public int Defence;
         public int OriginalHealth;
-        public int CurrentHealth;
+        public bool IsBlocking, IsFocused;
+        public int CurrentHealth
+        {
+            get { return _currentHealth; }
+            set
+            {
+                if (value > OriginalHealth)
+                {
+                    _currentHealth = OriginalHealth;
+                }
+                if (value < 0)
+                {
+                    _currentHealth = 0;
+                }
+                _currentHealth = value;
+            }
+        }
         private Random random = new Random();
         public Monster(Hero hero)
         {
             Name = _monsterNames[random.Next(_monsterNames.Count)];
             Face = _faces[random.Next(_faces.Count)];
-            Level = random.Next(1, hero.Level + 3 + 1);
+            Level = random.Next(1, hero.Level + 1 + 1);
             Exp = 20 + (random.Next(0, 25 + 1) * Level);
             Gold = 5 + (random.Next(0, 10 + 1) * Level);
             Strength = 15 + (random.Next(0, 5 + 1) * Level);
-            Defence = 3 + (random.Next(0, 2 + 1) * Level);
+            Defence = 3 + (random.Next(0, 1 + 1) * Level);
             OriginalHealth = 100 + (random.Next(0, 20 + 1) * Level);
             CurrentHealth = OriginalHealth;
+        }
+        public string DoMonsterAction(Hero hero, out int monsterDamage)
+        {
+            int randNum = random.Next(1, 100 + 1);
+            monsterDamage = 0;
+
+            if (hero.IsFocused)
+            {
+                if (randNum <= 50)
+                {
+                    return Strike(hero, out monsterDamage);
+                }
+            }
+            if (hero.IsBlocking)
+            {
+                if (randNum >= 51)
+                {
+                    return Focus();
+                }
+            }
+
+            if (randNum <= 25)
+            {
+                return Strike(hero, out monsterDamage);
+            }
+            else if (randNum <= 50)
+            {
+                return Focus();
+            }
+            else
+            {
+                return Block();
+            }
+        }
+        public string Strike(Hero hero, out int monsterDamage)
+        {
+            monsterDamage = Strength - (hero.BaseDefense + hero.EquippedArmour.Power);
+            return $"The monster tries to lash out at {hero.Name} to deal {monsterDamage} damage";
+        }
+        public string Block()
+        {
+            IsBlocking = true;
+            return $"The monster hardens their body to block and ignore all damage";
+        }
+        public string Focus()
+        {
+            IsFocused = true;
+            return $"The monster prepares a soul-crushing attack to hero's defenses";
         }
     }
 }

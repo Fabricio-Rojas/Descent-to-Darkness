@@ -9,9 +9,9 @@ Console.OutputEncoding = Encoding.UTF8;
 // create .txt files with ASCII art of the monsters [done]
 // monsters also scale with levels and have random stats and names that scale with level [done]
 // add gold granted by killing monsters, add options to buy weapons and armour in between fights [done]
-// when restarting the game, create a new Hero and ask for a new Name
-// (optional after main game has finished) add skills and magic to the game
-// (optional after main game has finished) add monster AI and special skills
+// when restarting the game, create a new Hero and ask for a new Name [done]
+// (optional after main game has finished) add monster AI and different actions [done]
+// (optional after main game has finished) add skills, abilities and magic to the game
 
 Game game = new Game();
 game.Start();

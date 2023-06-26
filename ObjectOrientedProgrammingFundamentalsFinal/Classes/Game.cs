@@ -15,13 +15,11 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         private int _fightCount = 0;
         private int _winCount = 0;
         private int _loseCount = 0;
-        public Game()
-        {
-
-        }
+        public Game() { }
         public void Start()
         {
-            Console.Write("What is your name hero?: ");
+            Console.Clear();
+            Console.Write("What is your name lost soul?: ");
             string? playerName = Console.ReadLine();
             while (string.IsNullOrEmpty(playerName) || !Regex.IsMatch(playerName, @"^[A-Za-z\s]+$"))
             {
@@ -34,10 +32,22 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             PrintLore();
             DisplayMainMenu();
         }
-        public void Restart()
-        {
-
-        }
+        //public void Restart()
+        //{
+        //    Console.Clear();
+        //    Console.Write("Tell me the name of the next soul in line?: ");
+        //    string? playerName = Console.ReadLine();
+        //    while (string.IsNullOrEmpty(playerName) || !Regex.IsMatch(playerName, @"^[A-Za-z\s]+$"))
+        //    {
+        //        Console.Clear();
+        //        Console.Write("Please tell me your name: ");
+        //        playerName = Console.ReadLine();
+        //    }
+        //    _hero = new Hero(playerName);
+        //    _shop = new Shop(_hero);
+        //    PrintLore();
+        //    DisplayMainMenu();
+        //}
         private void PrintLore()
         {
             Console.Clear();
@@ -72,7 +82,6 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
             {
                 case ConsoleKey.D1:
                     StartNewFight();
-                    DisplayMainMenu();
                     break;
 
                 case ConsoleKey.D2:
@@ -102,7 +111,19 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         private void StartNewFight()
         {
             _fight = new Fight(_hero);
-            _fight.ShowFightMenu();
+            _fightCount++;
+            bool won = _fight.ShowFightMenu();
+            if (won)
+            {
+                _winCount++;
+                _shop = new Shop(_hero);
+                DisplayMainMenu();
+            }
+            else
+            {
+                _loseCount++;
+                Start();
+            }
         }
         private void DisplayStatistics()
         {
