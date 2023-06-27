@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,11 +47,11 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         };
         private List<string> _faces = new List<string>
         {
-            File.ReadAllText(@"D:\Visual Studio Projects\ObjectOrientedProgrammingFundamentalsFinal\ObjectOrientedProgrammingFundamentalsFinal\Graphics\MonsterFace1.txt"),
-            File.ReadAllText(@"D:\Visual Studio Projects\ObjectOrientedProgrammingFundamentalsFinal\ObjectOrientedProgrammingFundamentalsFinal\Graphics\MonsterFace2.txt"),
-            File.ReadAllText(@"D:\Visual Studio Projects\ObjectOrientedProgrammingFundamentalsFinal\ObjectOrientedProgrammingFundamentalsFinal\Graphics\MonsterFace3.txt"),
-            File.ReadAllText(@"D:\Visual Studio Projects\ObjectOrientedProgrammingFundamentalsFinal\ObjectOrientedProgrammingFundamentalsFinal\Graphics\MonsterFace4.txt"),
-            File.ReadAllText(@"D:\Visual Studio Projects\ObjectOrientedProgrammingFundamentalsFinal\ObjectOrientedProgrammingFundamentalsFinal\Graphics\MonsterFace5.txt"),
+            "ObjectOrientedProgrammingFundamentalsFinal.Graphics.MonsterFace1.txt",
+            "ObjectOrientedProgrammingFundamentalsFinal.Graphics.MonsterFace2.txt",
+            "ObjectOrientedProgrammingFundamentalsFinal.Graphics.MonsterFace3.txt",
+            "ObjectOrientedProgrammingFundamentalsFinal.Graphics.MonsterFace4.txt",
+            "ObjectOrientedProgrammingFundamentalsFinal.Graphics.MonsterFace5.txt"
         };
         private int _currentHealth;
         public string Name;
@@ -82,7 +83,7 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         public Monster(Hero hero)
         {
             Name = _monsterNames[random.Next(_monsterNames.Count)];
-            Face = _faces[random.Next(_faces.Count)];
+            Face = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream(_faces[random.Next(_faces.Count)])).ReadToEnd(); // disgusting oneliner, just a complicated way to get a random face text
             Level = random.Next(1, hero.Level + 1 + 1);
             Exp = 20 + (random.Next(0, 25 + 1) * Level);
             Gold = 5 + (random.Next(0, 10 + 1) * Level);

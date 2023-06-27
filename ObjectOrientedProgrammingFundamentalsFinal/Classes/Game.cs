@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -64,10 +65,15 @@ namespace ObjectOrientedProgrammingFundamentalsFinal.Classes
         }
         private void DisplayMainMenu()
         {
-            string title = File.ReadAllText(@"D:\Visual Studio Projects\ObjectOrientedProgrammingFundamentalsFinal\ObjectOrientedProgrammingFundamentalsFinal\Graphics\TitleBanner.txt");
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string resourceName = "ObjectOrientedProgrammingFundamentalsFinal.Graphics.TitleBanner.txt";
+            Stream stream = assembly.GetManifestResourceStream(resourceName);
+            StreamReader reader = new StreamReader(stream);
+            string bannerContent = reader.ReadToEnd(); // had to pull this from stack and chatGPT, sorta got what it does
+
             Console.Clear();
-            Console.WriteLine("How deep will you go in your \n");
-            Console.WriteLine(title);
+            Console.WriteLine($"How deep will you go in your\n");
+            Console.WriteLine(bannerContent);
             Console.WriteLine("Press the number corresponding to the option \n");
             Console.WriteLine("1. Proceed to next Fight");
             Console.WriteLine("2. Open Shop");
